@@ -1,0 +1,13 @@
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // compile ze sciezka do intellij podawana jako arg i dawaj na travisa
+
+    testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
+        exclude module: 'groovy-all'  // comes from IntelliJ SDK
+    }
+}
