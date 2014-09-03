@@ -5,7 +5,7 @@ repositories {
 }
 
 dependencies {
-    // compile ze sciezka do intellij podawana jako arg i dawaj na travisa
+    compile fileTree(dir: 'idea-libs', include: '*.jar')
 
     testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
