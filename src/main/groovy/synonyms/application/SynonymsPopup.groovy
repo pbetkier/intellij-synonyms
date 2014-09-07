@@ -33,8 +33,9 @@ class SynonymsPopup {
 
     void populateWith(CategorizedSynonyms synonyms) {
         synonymsPane.text = synonyms.senses().collect {
-            "$it.value: ${synonyms.synonymsOfSense(it).collect{ it.value }.join(', ')}."
-        }.join("\n")
+            "<p><h3>$it.value</h3>${synonyms.synonymsOfSense(it)*.value.join(', ')}</p>"
+        }.join("")
+
         resizeToFitContent()
     }
 

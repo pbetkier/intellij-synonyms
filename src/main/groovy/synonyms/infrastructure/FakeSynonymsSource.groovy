@@ -16,8 +16,11 @@ class FakeSynonymsSource implements SynonymsSource {
         def future = ListenableFutureTask.create(new Callable() {
             @Override
             Object call() throws Exception {
-                def sense = new Sense("some sense")
-                return new CategorizedSynonyms([sense], [(sense): [new Term("house"), new Term("grass")]])
+                def firstSense = new Sense("some sense")
+                def secondSense = new Sense("some other sense")
+                return new CategorizedSynonyms([firstSense, secondSense],
+                        [(firstSense): [new Term("house"), new Term("grass")],
+                         (secondSense): [new Term("summer")]])
             }
         })
         future.run()
