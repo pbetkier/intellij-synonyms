@@ -1,0 +1,3 @@
+# Intellij synonyms
+
+Work in progress...
