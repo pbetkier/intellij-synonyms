@@ -1,11 +1,11 @@
 <idea-plugin version="2">
   <id>com.github.pbetkier.intellij.synonyms</id>
-  <name>Plugin display name here</name>
-  <version>1.0</version>
+  <name>Synonyms</name>
+  <version>1.1</version>
   <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
+      Synonyms.<br>
       <em>most HTML tags may be used</em>
     ]]></description>
 

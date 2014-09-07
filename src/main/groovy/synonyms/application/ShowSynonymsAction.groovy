@@ -1,6 +1,9 @@
 package synonyms.application
 
 import com.google.common.base.Optional
+import com.google.common.util.concurrent.FutureCallback
+import com.google.common.util.concurrent.Futures
+import com.google.common.util.concurrent.ListenableFuture
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
@@ -11,11 +14,16 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiUtilBase
+import synonyms.domain.Synonyms
+import synonyms.domain.SynonymsSource
 import synonyms.domain.Term
+import synonyms.infrastructure.FakeSynonymsSource
 
 class ShowSynonymsAction extends AnAction {
 
     private final TermExtractor termExtractor = new TermExtractor()
+
+    private final SynonymsSource synonymsSource = new FakeSynonymsSource()
 
     @Override
     void actionPerformed(AnActionEvent e) {
@@ -23,10 +31,25 @@ class ShowSynonymsAction extends AnAction {
         PsiElement element = PsiUtilBase.getElementAtCaret(editor)
 
         Optional<Term> extracted = termExtractor.fromElement(element)
-
-        if (extracted.present) {
-            notify(extracted.get().value)
+        if (!extracted.present) {
+            return;
         }
+
+        notify(extracted.get().value)
+        def popup = new SynonymsPopup(extracted.get(), e.project)
+        popup.show(e.dataContext)
+        ListenableFuture<Synonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
+        Futures.addCallback(synonymsFuture, new FutureCallback<Synonyms>() {
+            @Override
+            void onSuccess(Synonyms synonyms) {
+                popup.populateWith(synonyms)
+            }
+
+            @Override
+            void onFailure(Throwable throwable) {
+                notify("Something's wrong: ${throwable.message}.")
+            }
+        })
     }
 
     private void notify(String text) {
