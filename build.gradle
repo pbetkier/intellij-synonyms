@@ -5,7 +5,10 @@ repositories {
 }
 
 dependencies {
+    compile 'org.jsoup:jsoup:1.7.3'
+
     testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
     }
+    testCompile 'org.objenesis:objenesis:2.1'
 }

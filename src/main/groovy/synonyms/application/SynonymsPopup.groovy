@@ -12,7 +12,6 @@ import javax.swing.*
 class SynonymsPopup {
 
     private final JBPopup popup
-
     private final JEditorPane synonymsPane
 
     SynonymsPopup(Term term, Project project) {
@@ -32,9 +31,13 @@ class SynonymsPopup {
     }
 
     void populateWith(CategorizedSynonyms synonyms) {
-        synonymsPane.text = synonyms.senses().collect {
-            "<p><h3>$it.value</h3>${synonyms.synonymsOfSense(it)*.value.join(', ')}</p>"
-        }.join("")
+        if (synonyms.senses().isEmpty()) {
+            synonymsPane.text = "No synonyms found for $synonyms.subject.value."
+        } else {
+            synonymsPane.text = synonyms.senses().collect {
+                "<p><h3>$it.value</h3>${synonyms.synonymsOfSense(it)*.value.join(', ')}</p>"
+            }.join("")
+        }
 
         resizeToFitContent()
     }

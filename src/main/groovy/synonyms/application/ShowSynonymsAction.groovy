@@ -13,13 +13,12 @@ import com.intellij.psi.util.PsiUtilBase
 import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.SynonymsSource
 import synonyms.domain.Term
-import synonyms.infrastructure.FakeSynonymsSource
+import synonyms.infrastructure.wordreference.WordReferenceSynonymsSourceFactory
 
 class ShowSynonymsAction extends AnAction {
 
     private final TermExtractor termExtractor = new TermExtractor()
-
-    private final SynonymsSource synonymsSource = new FakeSynonymsSource()
+    private final SynonymsSource synonymsSource = WordReferenceSynonymsSourceFactory.create()
 
     @Override
     void actionPerformed(AnActionEvent e) {
