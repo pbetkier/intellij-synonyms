@@ -16,7 +16,7 @@ class SynonymsPopup {
     private final JEditorPane synonymsPane
 
     SynonymsPopup(Term term, Project project) {
-        synonymsPane = new JEditorPane("text/html", "Loading...")
+        synonymsPane = new JEditorPane("text/html", "Fetching synonyms...")
 
         popup = JBPopupFactory.getInstance().createComponentPopupBuilder(synonymsPane, synonymsPane)
                 .setProject(project)
@@ -33,5 +33,15 @@ class SynonymsPopup {
 
     void populateWith(Synonyms synonyms) {
         synonymsPane.text = synonyms.toString()
+        resizeToFitContent()
+    }
+
+    void populateWithError(String message) {
+        synonymsPane.text = "Problem with fetching synonyms, reason: $message."
+        resizeToFitContent()
+    }
+
+    private void resizeToFitContent() {
+        popup.pack(true, true)
     }
 }

@@ -4,13 +4,9 @@ import com.google.common.base.Optional
 import com.google.common.util.concurrent.FutureCallback
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
-import com.intellij.notification.Notification
-import com.intellij.notification.NotificationType
-import com.intellij.notification.Notifications
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiUtilBase
@@ -35,9 +31,9 @@ class ShowSynonymsAction extends AnAction {
             return;
         }
 
-        notify(extracted.get().value)
         def popup = new SynonymsPopup(extracted.get(), e.project)
         popup.show(e.dataContext)
+
         ListenableFuture<Synonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
         Futures.addCallback(synonymsFuture, new FutureCallback<Synonyms>() {
             @Override
@@ -46,15 +42,10 @@ class ShowSynonymsAction extends AnAction {
             }
 
             @Override
-            void onFailure(Throwable throwable) {
-                notify("Something's wrong: ${throwable.message}.")
+            void onFailure(Throwable cause) {
+                popup.populateWithError(cause.message)
             }
         })
-    }
-
-    private void notify(String text) {
-        def notification = new Notification("", "", "got $text", NotificationType.INFORMATION)
-        ApplicationManager.application.messageBus.syncPublisher(Notifications.TOPIC).notify(notification)
     }
 
 }
