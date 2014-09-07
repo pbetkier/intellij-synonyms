@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopup
 import com.intellij.openapi.ui.popup.JBPopupFactory
-import synonyms.domain.Synonyms
+import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.Term
 
 import javax.swing.*
@@ -31,8 +31,10 @@ class SynonymsPopup {
         popup.showInBestPositionFor(dataContext)
     }
 
-    void populateWith(Synonyms synonyms) {
-        synonymsPane.text = synonyms.toString()
+    void populateWith(CategorizedSynonyms synonyms) {
+        synonymsPane.text = synonyms.senses().collect {
+            "$it.value: ${synonyms.synonymsOfSense(it).collect{ it.value }.join(', ')}."
+        }.join("\n")
         resizeToFitContent()
     }
 

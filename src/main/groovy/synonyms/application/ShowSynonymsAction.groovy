@@ -10,7 +10,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiUtilBase
-import synonyms.domain.Synonyms
+import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.SynonymsSource
 import synonyms.domain.Term
 import synonyms.infrastructure.FakeSynonymsSource
@@ -34,10 +34,10 @@ class ShowSynonymsAction extends AnAction {
         def popup = new SynonymsPopup(extracted.get(), e.project)
         popup.show(e.dataContext)
 
-        ListenableFuture<Synonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
-        Futures.addCallback(synonymsFuture, new FutureCallback<Synonyms>() {
+        ListenableFuture<CategorizedSynonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
+        Futures.addCallback(synonymsFuture, new FutureCallback<CategorizedSynonyms>() {
             @Override
-            void onSuccess(Synonyms synonyms) {
+            void onSuccess(CategorizedSynonyms synonyms) {
                 popup.populateWith(synonyms)
             }
 
