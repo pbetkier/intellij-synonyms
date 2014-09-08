@@ -27,7 +27,7 @@ class ShowSynonymsAction extends AnAction {
 
         Optional<Term> extracted = termExtractor.fromElement(element)
         if (!extracted.present) {
-            return;
+            return
         }
 
         def popup = new SynonymsPopup(extracted.get(), e.project)
@@ -37,7 +37,7 @@ class ShowSynonymsAction extends AnAction {
         Futures.addCallback(synonymsFuture, new FutureCallback<CategorizedSynonyms>() {
             @Override
             void onSuccess(CategorizedSynonyms synonyms) {
-                popup.populateWith(synonyms)
+                popup.populateWithSynonyms(synonyms)
             }
 
             @Override
