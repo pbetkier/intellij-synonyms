@@ -1,7 +1,7 @@
 package synonyms.infrastructure.wordreference
 
 import synonyms.infrastructure.jsoup.JsoupDocumentFetcher
-import synonyms.infrastructure.task.ApplicationThreadPoolTaskExecutor
+import synonyms.infrastructure.executor.ApplicationThreadPoolTaskExecutor
 
 class WordReferenceSynonymsSourceFactory {
 

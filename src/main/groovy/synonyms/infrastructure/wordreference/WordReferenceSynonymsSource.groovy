@@ -6,22 +6,22 @@ import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.SynonymsSource
 import synonyms.domain.Term
 import synonyms.infrastructure.jsoup.JsoupDocumentFetcher
-import synonyms.infrastructure.task.TaskExecutor
 
 import java.util.concurrent.Callable
+import java.util.concurrent.Executor
 
 class WordReferenceSynonymsSource implements SynonymsSource {
 
     private final JsoupDocumentFetcher documentFetcher
     private final WordReferenceSynonymsParser synonymsParser
-    private final TaskExecutor executor
+    private final Executor fetchTaskExecutor
 
     WordReferenceSynonymsSource(JsoupDocumentFetcher documentFetcher,
                                 WordReferenceSynonymsParser synonymsParser,
-                                TaskExecutor executor) {
+                                Executor fetchTaskExecutor) {
         this.documentFetcher = documentFetcher
         this.synonymsParser = synonymsParser
-        this.executor = executor
+        this.fetchTaskExecutor = fetchTaskExecutor
     }
 
     @Override
@@ -34,7 +34,7 @@ class WordReferenceSynonymsSource implements SynonymsSource {
             }
         })
 
-        executor.execute(findSynonymsTask)
+        fetchTaskExecutor.execute(findSynonymsTask)
         return findSynonymsTask
     }
 }

@@ -13,12 +13,14 @@ import com.intellij.psi.util.PsiUtilBase
 import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.SynonymsSource
 import synonyms.domain.Term
+import synonyms.infrastructure.executor.UiThreadExecutor
 import synonyms.infrastructure.wordreference.WordReferenceSynonymsSourceFactory
 
 class ShowSynonymsAction extends AnAction {
 
     private final TermExtractor termExtractor = new TermExtractor()
     private final SynonymsSource synonymsSource = WordReferenceSynonymsSourceFactory.create()
+    private final UiThreadExecutor uiThreadExecutor = new UiThreadExecutor()
 
     @Override
     void actionPerformed(AnActionEvent e) {
@@ -34,17 +36,26 @@ class ShowSynonymsAction extends AnAction {
         popup.show(e.dataContext)
 
         ListenableFuture<CategorizedSynonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
-        Futures.addCallback(synonymsFuture, new FutureCallback<CategorizedSynonyms>() {
-            @Override
-            void onSuccess(CategorizedSynonyms synonyms) {
-                popup.populateWithSynonyms(synonyms)
-            }
+        Futures.addCallback(synonymsFuture, new PopulatePopupCallback(popup), uiThreadExecutor)
+    }
 
-            @Override
-            void onFailure(Throwable cause) {
-                popup.populateWithError(cause.message)
-            }
-        })
+    private static class PopulatePopupCallback implements FutureCallback<CategorizedSynonyms> {
+
+        private final SynonymsPopup popup
+
+        PopulatePopupCallback(SynonymsPopup popup) {
+            this.popup = popup
+        }
+
+        @Override
+        void onSuccess(CategorizedSynonyms synonyms) {
+            popup.populateWithSynonyms(synonyms)
+        }
+
+        @Override
+        void onFailure(Throwable cause) {
+            popup.populateWithError(cause.message)
+        }
     }
 
 }

@@ -1,17 +1,17 @@
 package synonyms.infrastructure.wordreference
 
+import com.intellij.concurrency.SameThreadExecutor
 import org.jsoup.nodes.Document
 import spock.lang.Specification
 import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.Term
 import synonyms.infrastructure.jsoup.JsoupDocumentFetcher
-import synonyms.infrastructure.task.InCurrentThreadTaskExecutor
 
 class WordReferenceSynonymsSourceSpec extends Specification {
 
     def documentFetcher = Stub(JsoupDocumentFetcher)
     def synonymsParser = Stub(WordReferenceSynonymsParser)
-    def taskExecutor = new InCurrentThreadTaskExecutor()
+    def taskExecutor = new SameThreadExecutor()
     def synonymsSource = new WordReferenceSynonymsSource(documentFetcher, synonymsParser, taskExecutor)
 
     def "should return future with synonyms parsed from document from wordreference"() {
