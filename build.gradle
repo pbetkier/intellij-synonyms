@@ -4,6 +4,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    provided
+}
+
 dependencies {
     compile 'org.jsoup:jsoup:1.7.3'
 
@@ -11,4 +15,16 @@ dependencies {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
     }
     testCompile 'org.objenesis:objenesis:2.1'
+
+    provided fileTree(dir: 'idea-libs', include: '*.jar')
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+    test {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
 }
