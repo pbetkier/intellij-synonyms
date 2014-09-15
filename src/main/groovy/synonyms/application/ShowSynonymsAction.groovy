@@ -27,7 +27,7 @@ class ShowSynonymsAction extends AnAction {
         Editor editor = CommonDataKeys.EDITOR.getData(e.dataContext)
         PsiElement element = PsiUtilBase.getElementAtCaret(editor)
 
-        Optional<Term> extracted = termExtractor.fromElement(element)
+        Optional<Term> extracted = termExtractor.fromElement(element, editor.caretModel.offset - element.textOffset)
         if (!extracted.present) {
             return
         }
