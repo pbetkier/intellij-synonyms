@@ -40,6 +40,7 @@ class SynonymsPopup {
     }
 
     private void resizeToFitContent() {
+        synonymsPane.resizeToFitContent()
         popup.pack(true, true)
     }
 }

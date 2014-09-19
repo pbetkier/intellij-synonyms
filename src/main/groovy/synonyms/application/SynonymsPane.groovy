@@ -9,6 +9,8 @@ import java.awt.*
 
 class SynonymsPane extends JEditorPane {
 
+    private static final int MAX_WIDTH = 600
+
     SynonymsPane() {
         super("text/html", "")
         (document as HTMLDocument).styleSheet.addRule(cssForFont(UIUtil.listFont))
@@ -23,6 +25,11 @@ class SynonymsPane extends JEditorPane {
                 "<div><h4>$it.value</h4>${synonyms.synonymsOfSense(it)*.value.join(', ')}</div>"
             }.join("")
         }
+    }
+
+    void resizeToFitContent() {
+        size = new Dimension(Math.min(preferredSize.width, MAX_WIDTH) as int, Short.MAX_VALUE)
+        preferredSize = new Dimension(size.width as int, preferredSize.height as int)
     }
 
     private String cssForFont(Font font) {
