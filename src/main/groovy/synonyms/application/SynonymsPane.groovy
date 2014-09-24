@@ -7,14 +7,20 @@ import javax.swing.*
 import javax.swing.text.html.HTMLDocument
 import java.awt.*
 
-class SynonymsPane extends JEditorPane {
+class SynonymsPane extends JScrollPane {
 
     private static final int MAX_WIDTH = 600
+    private static final int MAX_HEIGHT = 400
+
+    private final JEditorPane editorPane
 
     SynonymsPane() {
-        super("text/html", "")
-        (document as HTMLDocument).styleSheet.addRule(cssForFont(UIUtil.listFont))
-        editable = false
+        super(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)
+        border = null
+
+        editorPane = new JEditorPane("text/html", "")
+        (editorPane.document as HTMLDocument).styleSheet.addRule(cssForFont(UIUtil.listFont))
+        editorPane.editable = false
     }
 
     void populateWithSynonyms(CategorizedSynonyms synonyms) {
@@ -32,9 +38,24 @@ class SynonymsPane extends JEditorPane {
         text = msg.endsWith('.') ? msg : "$msg."
     }
 
+    void setText(String text) {
+        editorPane.text = text
+    }
+
+    String getText() {
+        return editorPane.text
+    }
+
     void resizeToFitContent() {
-        size = new Dimension(Math.min(preferredSize.width, MAX_WIDTH) as int, Short.MAX_VALUE)
-        preferredSize = new Dimension(size.width as int, preferredSize.height as int)
+        editorPane.size = new Dimension(
+                width: Math.min(editorPane.preferredSize.width as int, MAX_WIDTH),
+                height: Short.MAX_VALUE
+        )
+        editorPane.preferredSize = new Dimension(
+                width: editorPane.size.width + verticalScrollBar.maximumSize.width as int,
+                height: Math.min(editorPane.preferredSize.height as int, MAX_HEIGHT)
+        )
+        viewportView = editorPane
     }
 
     private String cssForFont(Font font) {
