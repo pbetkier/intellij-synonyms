@@ -54,7 +54,7 @@ class ShowSynonymsAction extends AnAction {
 
         @Override
         void onFailure(Throwable cause) {
-            popup.populateWithError(cause.message)
+            popup.populateWithError("Obtaining synonyms failed with ${cause.class.simpleName}: $cause.message")
         }
     }
 

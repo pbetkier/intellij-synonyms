@@ -27,6 +27,11 @@ class SynonymsPane extends JEditorPane {
         }
     }
 
+    void populateWithError(String message) {
+        def msg = "<h4>Problem with displaying synonyms, reason:</h4> $message"
+        text = msg.endsWith('.') ? msg : "$msg."
+    }
+
     void resizeToFitContent() {
         size = new Dimension(Math.min(preferredSize.width, MAX_WIDTH) as int, Short.MAX_VALUE)
         preferredSize = new Dimension(size.width as int, preferredSize.height as int)

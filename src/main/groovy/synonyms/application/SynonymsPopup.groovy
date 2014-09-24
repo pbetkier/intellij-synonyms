@@ -35,7 +35,7 @@ class SynonymsPopup {
     }
 
     void populateWithError(String message) {
-        synonymsPane.text = "Problem with fetching synonyms, reason: $message."
+        synonymsPane.populateWithError(message)
         resizeToFitContent()
     }
 

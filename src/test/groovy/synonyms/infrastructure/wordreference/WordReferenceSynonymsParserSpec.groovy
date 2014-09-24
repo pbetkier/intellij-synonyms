@@ -40,7 +40,7 @@ class WordReferenceSynonymsParserSpec extends Specification {
         result.synonymsOfSense(result.senses().first()).size() == YEAR_SYNONYMS_COUNT
     }
 
-    def "should return result with no senses if provided document doesn't contain synonyms"() {
+    def "should return empty result if provided document doesn't contain synonyms"() {
         given:
         def documentWithoutSynonyms = readContentOf("wordreference/thesaurusPageForNonexistingTerm.html")
 
@@ -50,6 +50,18 @@ class WordReferenceSynonymsParserSpec extends Specification {
         then:
         !result.senses()
     }
+
+    def "should fail if provided document is empty"() {
+        given:
+        def emptyDocument = readContentOf("emptyPage.html")
+
+        when:
+        parser.categorizedSynonymsFromDocument(new Term("whatever"), emptyDocument)
+
+        then:
+        thrown WordReferenceDocumentParsingException
+    }
+
 
     private Document readContentOf(String resourceName) {
         def content = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8)

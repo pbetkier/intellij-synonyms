@@ -13,6 +13,10 @@ class WordReferenceSynonymsParser {
         def synonymsBySenses = [:]
 
         def article = toParse.getElementById('article')
+        if (article == null) {
+            throw new WordReferenceDocumentParsingException(subject, "missing 'article' element")
+        }
+
         if (article.select('.liSense')) {
             article.select('.liSense').each {
                 def sense = new Sense(it.select('.synsense').text() - "Sense: ")
