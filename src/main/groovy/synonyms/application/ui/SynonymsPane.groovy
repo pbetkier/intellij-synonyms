@@ -1,4 +1,4 @@
-package synonyms.application
+package synonyms.application.ui
 
 import com.intellij.util.ui.UIUtil
 import synonyms.domain.CategorizedSynonyms

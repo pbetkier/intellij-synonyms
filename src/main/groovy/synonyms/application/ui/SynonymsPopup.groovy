@@ -1,4 +1,4 @@
-package synonyms.application
+package synonyms.application.ui
 
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.project.Project

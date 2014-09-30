@@ -1,4 +1,4 @@
-package synonyms.application
+package synonyms.application.ui
 
 import com.google.common.base.Optional
 import com.google.common.util.concurrent.FutureCallback
@@ -10,6 +10,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiUtilBase
+import synonyms.application.TermExtractor
 import synonyms.domain.CategorizedSynonyms
 import synonyms.domain.SynonymsSource
 import synonyms.domain.Term

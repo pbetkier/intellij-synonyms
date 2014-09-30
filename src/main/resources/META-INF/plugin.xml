@@ -36,7 +36,7 @@
 
   <actions>
     <!-- Add your actions here -->
-      <action id="ShowSynonyms" class="synonyms.application.ShowSynonymsAction" text="Show synonyms" description="Shows synonyms">
+      <action id="ShowSynonyms" class="synonyms.application.ui.ShowSynonymsAction" text="Show synonyms" description="Shows synonyms">
           <add-to-group group-id="QuickActions" anchor="last"/>
           <keyboard-shortcut keymap="$default" first-keystroke="alt Y"/>
       </action>

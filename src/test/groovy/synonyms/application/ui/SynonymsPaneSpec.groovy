@@ -1,4 +1,4 @@
-package synonyms.application
+package synonyms.application.ui
 
 import spock.lang.Specification
 import synonyms.domain.CategorizedSynonyms
