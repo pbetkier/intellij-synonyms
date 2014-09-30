@@ -16,12 +16,9 @@ class TermExtractor {
                 ranges.add(it)
             })
 
-            int currentPosition = 0
-            for (TextRange range in ranges) {
-                currentPosition += range.length
-                if (currentPosition > cursorPosition) {
-                    return Optional.of(new Term(range.substring(verified.text).toLowerCase()))
-                }
+            def range = ranges.find { it.startOffset <= cursorPosition && cursorPosition < it.endOffset }
+            if (range) {
+                return Optional.of(new Term(range.substring(verified.text).toLowerCase()))
             }
         }
         return Optional.absent()

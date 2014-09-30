@@ -41,6 +41,7 @@ class TermExtractorSpec extends Specification {
         "lastWord"           | "lastWord".indexOf('d')           || "word"
         "with_underscore"    | "with_underscore".indexOf('n')    || "underscore"
         "withNumber10"       | "withNumber10".indexOf('e')       || "number"
+        "wiThShoRtWords"     | "wiThShoRtWords".indexOf('d')     || "words"
     }
 
     def "doesn't extract short terms"() {
