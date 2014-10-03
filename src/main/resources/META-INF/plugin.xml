@@ -1,42 +1,20 @@
 <idea-plugin version="2">
   <id>com.github.pbetkier.intellij.synonyms</id>
   <name>Synonyms</name>
-  <version>1.1</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <version>0.1</version>
+  <vendor url="http://github.com/pbetkier">Piotr Betkier</vendor>
 
-  <description><![CDATA[
-      Synonyms.<br>
-      <em>most HTML tags may be used</em>
-    ]]></description>
+  <description>
+      View the synonyms for the current word under cursor.
+      Makes your tough naming decisions less painful.
+  </description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
-    ]]>
-  </change-notes>
+  <idea-version since-build="135"/>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
-
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
-
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
-
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
-
   <actions>
-    <!-- Add your actions here -->
       <action id="ShowSynonyms" class="synonyms.application.ui.ShowSynonymsAction" text="Show synonyms" description="Shows synonyms">
           <add-to-group group-id="QuickActions" anchor="last"/>
           <keyboard-shortcut keymap="$default" first-keystroke="alt Y"/>
