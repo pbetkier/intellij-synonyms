@@ -1,4 +1,4 @@
-# IntelliJ Synonyms ![build status](https://travis-ci.org/pbetkier/intellij-synonyms.svg)
+# IntelliJ Synonyms [![Build Status](https://travis-ci.org/pbetkier/intellij-synonyms.svg?branch=master)](https://travis-ci.org/pbetkier/intellij-synonyms)
 
 *View synonyms for the word under cursor*
 
