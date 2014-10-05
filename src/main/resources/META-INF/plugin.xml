@@ -2,7 +2,7 @@
   <id>com.github.pbetkier.intellij.synonyms</id>
   <name>Synonyms</name>
   <version>0.1</version>
-  <vendor url="http://github.com/pbetkier">Piotr Betkier</vendor>
+  <vendor email="pbetkier@gmail.com" url="http://github.com/pbetkier">Piotr Betkier</vendor>
 
   <description>
       View the synonyms for the current word under cursor.
