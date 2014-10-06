@@ -1,4 +1,5 @@
 apply plugin: 'groovy'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
@@ -26,5 +27,30 @@ sourceSets {
     test {
         compileClasspath += configurations.provided
         runtimeClasspath += configurations.provided
+    }
+}
+
+idea.project.ipr {
+    beforeMerged { project ->
+        project.modulePaths.clear()
+    }
+}
+
+idea.module.iml {
+    withXml {
+        it.node.@type = "PLUGIN_MODULE"
+    }
+}
+
+task setup {
+    dependsOn ideaModule, ideaProject
+    doLast {
+        copy {
+            from '.'
+            into '.idea/'
+            include '*.ipr'
+            rename { "modules.xml" }
+        }
+        project.delete "${project.name}.ipr"
     }
 }

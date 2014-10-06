@@ -28,8 +28,11 @@ Currently only words of length greater than 3 are searchable.
 
 ## Development
 
-Clone this repository and import in your IntelliJ as a Gradle Project to get the required dependencies. 
-Configure IntelliJ SDK according to [getting started guide](http://confluence.jetbrains.com/display/IDEADEV/Getting+Started+with+Plugin+Development).
+1. Clone this repository.
+1. Execute ``./gradlew setup`` to generate IDEA project files.
+1. Open this project in IntelliJ, add Gradle integration when suggested and refresh the dependencies in Gradle toolbox.
+1. Configure IntelliJ SDK according to [getting started guide](http://confluence.jetbrains.com/display/IDEADEV/Getting+Started+with+Plugin+Development).
+1. Run all the tests to verify everything is OK.
 
 In order to run the tests from the command line, create a symlink in the project root called ``idea-libs`` linking to 
 your IntelliJ's ``lib/`` subdirectory. Then execute ``./gradlew test``.
