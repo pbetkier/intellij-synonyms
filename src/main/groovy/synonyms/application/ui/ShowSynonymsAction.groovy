@@ -36,6 +36,7 @@ class ShowSynonymsAction extends AnAction {
         def popup = new SynonymsPopup(extracted.get(), e.project)
         popup.show(e.dataContext)
 
+        popup.indicateFetchingInProgress()
         ListenableFuture<CategorizedSynonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
         Futures.addCallback(synonymsFuture, new PopulatePopupCallback(popup), uiThreadExecutor)
     }

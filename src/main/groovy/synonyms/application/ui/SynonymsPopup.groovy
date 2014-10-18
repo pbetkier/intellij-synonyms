@@ -14,7 +14,6 @@ class SynonymsPopup {
 
     SynonymsPopup(Term term, Project project) {
         synonymsPane = new SynonymsPane()
-        synonymsPane.text = "Fetching synonyms..."
 
         popup = JBPopupFactory.getInstance().createComponentPopupBuilder(synonymsPane, synonymsPane)
                 .setProject(project)
@@ -36,6 +35,11 @@ class SynonymsPopup {
 
     void populateWithError(String message) {
         synonymsPane.populateWithError(message)
+        resizeToFitContent()
+    }
+
+    void indicateFetchingInProgress() {
+        synonymsPane.text = "Fetching synonyms..."
         resizeToFitContent()
     }
 

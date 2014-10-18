@@ -47,6 +47,8 @@ class SynonymsPane extends JScrollPane {
     }
 
     void resizeToFitContent() {
+        editorPane.setPreferredSize(null)
+        viewportView = null
         editorPane.size = new Dimension(
                 width: Math.min(editorPane.preferredSize.width as int, MAX_WIDTH),
                 height: Short.MAX_VALUE
