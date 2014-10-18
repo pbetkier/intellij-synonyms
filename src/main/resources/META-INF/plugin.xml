@@ -1,13 +1,18 @@
 <idea-plugin version="2">
   <id>com.github.pbetkier.intellij.synonyms</id>
   <name>Synonyms</name>
-  <version>0.1</version>
+  <version>0.1.1</version>
   <vendor email="pbetkier@gmail.com" url="http://github.com/pbetkier">Piotr Betkier</vendor>
 
   <description>
       View the synonyms for the current word under cursor.
       Makes your tough naming decisions less painful.
   </description>
+
+  <change-notes><![CDATA[
+    Release notes are available on the <a href="https://github.com/pbetkier/intellij-synonyms/releases">project's github page</a>.
+]]>
+  </change-notes>
 
   <idea-version since-build="135"/>
 
