@@ -24,20 +24,32 @@ class ShowSynonymsAction extends AnAction {
     private final UiThreadExecutor uiThreadExecutor = new UiThreadExecutor()
 
     @Override
-    void actionPerformed(AnActionEvent e) {
-        Editor editor = CommonDataKeys.EDITOR.getData(e.dataContext)
+    void actionPerformed(AnActionEvent event) {
+        Editor editor = CommonDataKeys.EDITOR.getData(event.dataContext)
         PsiElement element = PsiUtilBase.getElementAtCaret(editor)
 
-        Optional<Term> extracted = termExtractor.fromElement(element, editor.caretModel.offset - element.textOffset)
+        Optional<Term> extracted = extractCurrentTerm(element, editor)
         if (!extracted.present) {
             return
         }
 
-        def popup = new SynonymsPopup(extracted.get(), e.project)
-        popup.show(e.dataContext)
+        SynonymsPopup popup = createSynonymsPopup(extracted.get(), event)
+        showSynonymsForTermInPopup(popup, extracted.get())
+    }
 
+    private Optional<Term> extractCurrentTerm(PsiElement element, Editor editor) {
+        return termExtractor.fromElement(element, editor.caretModel.offset - element.textOffset)
+    }
+
+    private SynonymsPopup createSynonymsPopup(Term extracted, AnActionEvent e) {
+        def popup = new SynonymsPopup(extracted, e.project)
+        popup.show(e.dataContext)
+        return popup
+    }
+
+    private void showSynonymsForTermInPopup(SynonymsPopup popup, Term extracted) {
         popup.indicateFetchingInProgress()
-        ListenableFuture<CategorizedSynonyms> synonymsFuture = synonymsSource.synonymsFor(extracted.get())
+        ListenableFuture<CategorizedSynonyms> synonymsFuture = synonymsSource.synonymsFor(extracted)
         Futures.addCallback(synonymsFuture, new PopulatePopupCallback(popup), uiThreadExecutor)
     }
 
