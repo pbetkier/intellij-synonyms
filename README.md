@@ -2,6 +2,8 @@
 
 *View synonyms for the word under cursor*
 
+**WARNING: the plugin doesn't function at the moment. The synonyms source changed its API and this code hasn't been updated yet.**
+
 Naming things is one of the hardest tasks in software development. Don't you hate it when you model your domain or an
 algorithm and feel the term you came up with doesn't fully express your concept? If only somebody gave you a list of 
 alternatives to pick from...
