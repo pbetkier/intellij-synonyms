@@ -1,3 +1,2 @@
 language: groovy
-before_install: ./get-idea-libs.sh
 

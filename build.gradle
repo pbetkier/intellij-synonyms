@@ -12,7 +12,6 @@ repositories {
 intellij {
     version 'IC-2018.1'
     pluginName 'Synonyms'
-
 }
 
 publishPlugin {
@@ -30,8 +29,6 @@ dependencies {
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
     }
-
-    compileOnly fileTree(dir: 'idea-libs', include: '*.jar')
 }
 
 test {
