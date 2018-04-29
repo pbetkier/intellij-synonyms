@@ -1,5 +1,3 @@
 language: groovy
-jdk:
-  - oraclejdk7
 before_install: ./get-idea-libs.sh
 
