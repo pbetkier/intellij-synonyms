@@ -16,7 +16,7 @@ list of synonyms for the word under the cursor in your editor.
 You can install IntelliJ Synonyms using the standard channel - the **Plugins** IDE settings. It is uploaded to
 JetBrains Plugins Repository, so you can view the details [here](https://plugins.jetbrains.com/plugin/7576).
 
-Requires IntelliJ IDEA 13.1 or greater. Confirmed working with PyCharm 3.4 as well.
+Verified against IntelliJ IDEA 18.1.2.
 
 ## Usage
 
@@ -31,13 +31,8 @@ Currently only words of length greater than 3 are searchable.
 ## Development
 
 1. Clone this repository.
-1. Execute ``./gradlew setup`` to generate IDEA project files.
-1. Open this project in IntelliJ, add Gradle integration when suggested and refresh the dependencies in Gradle toolbox.
-1. Configure IntelliJ SDK according to [getting started guide](http://confluence.jetbrains.com/display/IDEADEV/Getting+Started+with+Plugin+Development).
-1. Run all the tests to verify everything is OK.
-
-In order to run the tests from the command line, create a symlink in the project root called ``idea-libs`` linking to 
-your IntelliJ's ``lib/`` subdirectory. Then execute ``./gradlew test``.
+1. Import to IntelliJ according to [plugin development getting started guide](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started.html).
+1. Run the tests to verify everything is OK: ``./gradlew clean test``.
 
 ### Synonyms source
 

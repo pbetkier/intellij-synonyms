@@ -1,56 +1,41 @@
-apply plugin: 'groovy'
+plugins {
+    id "org.jetbrains.intellij" version "0.3.1"
+}
+
 apply plugin: 'idea'
+apply plugin: 'groovy'
 
 repositories {
     mavenCentral()
 }
 
-configurations {
-    provided
+intellij {
+    version 'IC-2018.1'
+    pluginName 'Synonyms'
+
 }
+
+publishPlugin {
+    username 'xxx'
+    password 'xxx'
+    channels 'xxx'
+}
+
+group 'com.github.pbetkier'
+version '0.1.2-SNAPSHOT'
 
 dependencies {
     compile 'org.jsoup:jsoup:1.7.3'
 
-    testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
     }
-    testCompile 'org.objenesis:objenesis:2.1'
 
-    provided fileTree(dir: 'idea-libs', include: '*.jar')
+    compileOnly fileTree(dir: 'idea-libs', include: '*.jar')
 }
 
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-    test {
-        compileClasspath += configurations.provided
-        runtimeClasspath += configurations.provided
-    }
-}
-
-idea.project.ipr {
-    beforeMerged { project ->
-        project.modulePaths.clear()
-    }
-}
-
-idea.module.iml {
-    withXml {
-        it.node.@type = "PLUGIN_MODULE"
-    }
-}
-
-task setup {
-    dependsOn ideaModule, ideaProject
-    doLast {
-        copy {
-            from '.'
-            into '.idea/'
-            include '*.ipr'
-            rename { "modules.xml" }
-        }
-        project.delete "${project.name}.ipr"
+test {
+    testLogging {
+        events 'passed', 'skipped', 'failed'
     }
 }
