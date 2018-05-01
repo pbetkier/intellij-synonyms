@@ -3,4 +3,4 @@ build/
 .gradle/
 *.iml
 .idea/
-idea-libs
+publish.properties

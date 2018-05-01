@@ -12,16 +12,16 @@ repositories {
 intellij {
     version 'IC-2018.1'
     pluginName 'Synonyms'
-}
-
-publishPlugin {
-    username 'xxx'
-    password 'xxx'
-    channels 'xxx'
+    publish {
+        pluginId '7576-synonyms'
+        if (file('publish.properties').exists()) {
+            apply from: "publish.properties"
+        }
+    }
 }
 
 group 'com.github.pbetkier'
-version '0.1.2-SNAPSHOT'
+version '0.2.0'
 
 dependencies {
     compile 'org.jsoup:jsoup:1.7.3'
