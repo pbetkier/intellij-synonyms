@@ -17,26 +17,31 @@ class WordReferenceSynonymsParser {
             throw new WordReferenceDocumentParsingException(subject, "missing 'article' element")
         }
 
-        if (article.select('.liSense')) {
-            article.select('.liSense').each {
-                def sense = new Sense(it.select('.synsense').text() - "Sense: ")
-                senses.add(sense)
-                synonymsBySenses.put(sense, extractSynonyms(it))
-            }
-        } else {
-            def synonyms = extractSynonyms(article)
-            if (synonyms) {
-                def identity = new Sense(subject.value)
-                senses.add(identity)
-                synonymsBySenses.put(identity, synonyms)
-            }
+        def divs =  article.select('.engthes > div')
+        switch (divs.size()) {
+            case 0:
+                break
+            case 1:
+                def synonyms = extractSynonyms(divs.first())
+                if (!synonyms.isEmpty()) {
+                    def identity = new Sense(subject.value)
+                    senses.add(identity)
+                    synonymsBySenses.put(identity, synonyms)
+                }
+                break
+            default:
+                divs.each {
+                    def sense = new Sense(it.select('b').text() - "Sense: ")
+                    senses.add(sense)
+                    synonymsBySenses.put(sense, extractSynonyms(it))
+                }
         }
 
         return new CategorizedSynonyms(subject, senses, synonymsBySenses)
     }
 
     private List<Term> extractSynonyms(Element context) {
-        return context.select('.synonym')*.text().collect { new Term(it) }
+        return context.select('span')*.text().collect { new Term(it) }
     }
 
 }
