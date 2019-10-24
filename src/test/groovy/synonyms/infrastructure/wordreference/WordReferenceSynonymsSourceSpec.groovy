@@ -1,6 +1,6 @@
 package synonyms.infrastructure.wordreference
 
-import com.intellij.concurrency.SameThreadExecutor
+import com.intellij.util.concurrency.SameThreadExecutor
 import org.jsoup.nodes.Document
 import spock.lang.Specification
 import synonyms.domain.CategorizedSynonyms

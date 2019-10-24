@@ -1,7 +1,6 @@
 <idea-plugin version="2">
   <id>com.github.pbetkier.intellij.synonyms</id>
   <name>Synonyms</name>
-  <version>0.1.2-SNAPSHOT</version>
   <vendor email="pbetkier@gmail.com" url="http://github.com/pbetkier">Piotr Betkier</vendor>
 
   <description>
@@ -13,8 +12,6 @@
     Release notes are available on the <a href="https://github.com/pbetkier/intellij-synonyms/releases">project's github page</a>.
 ]]>
   </change-notes>
-
-  <idea-version since-build="135"/>
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>

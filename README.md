@@ -14,7 +14,7 @@ list of synonyms for the word under the cursor in your editor.
 You can install IntelliJ Synonyms using the standard channel - the **Plugins** IDE settings. It is uploaded to
 JetBrains Plugins Repository, so you can view the details [here](https://plugins.jetbrains.com/plugin/7576).
 
-Verified against IntelliJ IDEA 18.1.2.
+Verified against IntelliJ IDEA 2019.2.1.
 
 ## Usage
 

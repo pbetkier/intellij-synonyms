@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.3.1"
+    id "org.jetbrains.intellij" version "0.4.10"
 }
 
 apply plugin: 'idea'
@@ -10,21 +10,21 @@ repositories {
 }
 
 intellij {
-    version 'IC-2018.1'
+    version 'IC-2019.2.1'
     pluginName 'Synonyms'
-    publish {
-        pluginId '7576-synonyms'
-        if (file('publish.properties').exists()) {
-            apply from: "publish.properties"
-        }
-    }
 }
+
+//publishPlugin {
+//    if (file('publish.properties').exists()) {
+//        apply from: "publish.properties"
+//    }
+//}
 
 group 'com.github.pbetkier'
 version '0.2.0'
 
 dependencies {
-    compile 'org.jsoup:jsoup:1.7.3'
+    compile 'org.jsoup:jsoup:1.12.1'
 
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
         exclude module: 'groovy-all'  // comes from IntelliJ SDK
@@ -36,3 +36,4 @@ test {
         events 'passed', 'skipped', 'failed'
     }
 }
+
