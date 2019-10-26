@@ -17,7 +17,7 @@
   <depends>com.intellij.modules.lang</depends>
 
   <actions>
-      <action id="ShowSynonyms" class="synonyms.application.ui.ShowSynonymsAction" text="Show synonyms" description="Shows synonyms">
+      <action id="ShowSynonyms" class="synonyms.application.ui.ShowSynonymsAction" text="Show Synonyms" description="Shows synonyms">
           <add-to-group group-id="QuickActions" anchor="last"/>
           <keyboard-shortcut keymap="$default" first-keystroke="alt Y"/>
       </action>

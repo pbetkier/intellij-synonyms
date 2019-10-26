@@ -9,9 +9,9 @@ import synonyms.domain.Term
 
 class WordReferenceSynonymsParserSpec extends Specification {
 
-    static final int HOUSE_SENSES_COUNT = 4
-    static final int HOUSE_FIRST_SENSE_SYNONYMS_COUNT = 3
-    static final int YEAR_SYNONYMS_COUNT = 8
+    static final int HOUSE_SENSES_COUNT = 9
+    static final int HOUSE_FIRST_SENSE_SYNONYMS_COUNT = 13
+    static final int YEAR_SYNONYMS_COUNT = 7
 
     def parser = new WordReferenceSynonymsParser()
 

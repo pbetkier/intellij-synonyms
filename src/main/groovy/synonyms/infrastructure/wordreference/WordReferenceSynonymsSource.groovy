@@ -29,7 +29,7 @@ class WordReferenceSynonymsSource implements SynonymsSource {
         def findSynonymsTask = ListenableFutureTask.create(new Callable() {
             @Override
             CategorizedSynonyms call() throws Exception {
-                def document = documentFetcher.fetch("http://wordreference.com/thesaurus/$term.value")
+                def document = documentFetcher.fetch("https://wordreference.com/synonyms/$term.value")
                 return synonymsParser.categorizedSynonymsFromDocument(term, document)
             }
         })

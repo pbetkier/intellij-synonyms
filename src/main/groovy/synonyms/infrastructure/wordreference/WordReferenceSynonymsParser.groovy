@@ -41,7 +41,7 @@ class WordReferenceSynonymsParser {
     }
 
     private List<Term> extractSynonyms(Element context) {
-        return context.select('span')*.text().collect { new Term(it) }
+        return context.select('span').not('.tags')*.text().collect { new Term(it) }
     }
 
 }
