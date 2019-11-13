@@ -15,7 +15,9 @@ intellij {
 }
 
 publishPlugin {
-    token intellijPublishToken
+    if (file('gradle.properties').exists()) {
+        token intellijPublishToken
+    }
 }
 
 group 'com.github.pbetkier'
