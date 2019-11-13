@@ -5,3 +5,4 @@ classes/
 *.iml
 .idea/
 publish.properties
+gradle.properties

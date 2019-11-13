@@ -14,14 +14,12 @@ intellij {
     pluginName 'Synonyms'
 }
 
-//publishPlugin {
-//    if (file('publish.properties').exists()) {
-//        apply from: "publish.properties"
-//    }
-//}
+publishPlugin {
+    token intellijPublishToken
+}
 
 group 'com.github.pbetkier'
-version '0.2.0'
+version '0.3.0'
 
 dependencies {
     compile 'org.jsoup:jsoup:1.12.1'
