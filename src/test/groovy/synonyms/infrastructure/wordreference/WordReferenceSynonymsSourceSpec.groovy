@@ -20,7 +20,7 @@ class WordReferenceSynonymsSourceSpec extends Specification {
         def subject = new Term("house")
         def parsedSynonyms = new CategorizedSynonyms(subject, [], [:])
 
-        documentFetcher.fetch("http://wordreference.com/thesaurus/house") >> document
+        documentFetcher.fetch("https://wordreference.com/synonyms/house") >> document
         synonymsParser.categorizedSynonymsFromDocument(subject, document) >> parsedSynonyms
 
         expect:
