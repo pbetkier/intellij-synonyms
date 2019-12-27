@@ -20,8 +20,12 @@ publishPlugin {
     }
 }
 
+patchPluginXml {
+    sinceBuild "192"
+}
+
 group 'com.github.pbetkier'
-version '0.3.0'
+version '0.3.1'
 
 dependencies {
     compile 'org.jsoup:jsoup:1.12.1'
