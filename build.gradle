@@ -10,7 +10,7 @@ repositories {
 }
 
 intellij {
-    version 'IC-2019.2.1'
+    version 'IC-2019.3.1'
     pluginName 'Synonyms'
 }
 

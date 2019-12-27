@@ -16,6 +16,8 @@
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
 
+  <idea-version since-build="192"/>
+
   <actions>
       <action id="ShowSynonyms" class="synonyms.application.ui.ShowSynonymsAction" text="Show Synonyms" description="Shows synonyms">
           <add-to-group group-id="QuickActions" anchor="last"/>
